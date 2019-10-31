@@ -1,0 +1,77 @@
+---
+title: "Lecture14_EDA"
+author: "Jumpei Fujimoto"
+date: "10/16/2019"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+```
+```{r}
+?diamonds
+head(diamonds)
+```
+```{r}
+str(diamonds)
+summary(diamonds)
+```
+
+```{r}
+#categorial variable for bar chart, continuous variable for Histogram.
+# why ideal cut has a lot than fair? it is weird
+ggplot(diamonds) +geom_bar(aes(x= cut))
+```
+```{r}
+ggplot(diamonds) +geom_histogram(aes(x= carat), binwidth = .05)
+```
+
+```{r}
+```
+
+
+```{r}
+ggplot(diamonds) +geom_histogram(aes(x= y), binwidth = .5)
+#there is a value for zero
+# there might be some values y <20
+```
+```{r}
+ggplot(diamonds) +geom_histogram(aes(x= y), binwidth = .5)+
+  coord_cartesian(ylim = c(0,100))
+#there is some data 0 and more than 20
+```
+
+
+```{r}
+# arrange y for order
+diamonds %>% 
+  filter(y >20 | y ==0) %>% 
+  arrange(y)
+```
+
+```{r}
+#Explore the distribution of each of the x, y, z in diamonds. what do you learn? Think a diamond and how you might decide which dimention is the length, width, and depth.
+# x= length, y= width, z= depth
+```
+```{r}
+?summary()
+summary(diamonds)
+```
+```{r}
+ggplot(diamonds, aes(x=x, y=y)) + geom_point() + geom_smooth()
+ggplot(diamonds, aes(x=y, y=z)) + geom_point() + geom_smooth()
+ggplot(diamonds, aes(x=x, y=z)) + geom_point() + geom_smooth()
+
+# X and y are positive relationship
+# y and z are positive relationship too and y is until 10 and z is until 7.5
+# y and z are very similar, but if compared with x, z is not so diverse and seems few outliers.
+# y > 20 seems outliers, x == 0 seems outliers, z >30 seems outliers
+```
+```{r}
+ggplot(diamonds, aes(x=x, y=price)) + geom_point() + geom_smooth()
+ggplot(diamonds, aes(x=y, y=price)) + geom_point() + geom_smooth()
+ggplot(diamonds, aes(x=z, y=price)) + geom_point() + geom_smooth()
+# most of them are positive relationship with the price of we ignored outliers
+
+```
+

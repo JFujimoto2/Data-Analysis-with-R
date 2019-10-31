@@ -1,0 +1,44 @@
+---
+title: "Lecture13_group_by"
+author: "Jumpei Fujimoto"
+date: "10/14/2019"
+output: html_document
+---
+```{r}
+library(nycflights13)
+?flights
+head(flights)
+```
+
+```{r}
+# na.rm = TRUE avoids N/A
+summarise(flights, mean_distance =mean(distance, na.rm = TRUE), mean_arr_delay = mean(arr_delay, na.rm=TRUE))
+```
+
+```{r}
+#Group_by
+by_cyl = mtcars %>% group_by(cyl)
+by_cyl
+```
+
+```{r}
+#mean distance and mean arr_delay by using pipe
+flights %>% group_by(year, month, day)  %>% summarize(mean_dis =mean(distance, na.rm = TRUE), mean_arr =mean(arr_delay, na.rm = TRUE))
+```
+
+```{r}
+flights %>%
+  group_by(dest)  %>%
+  summarize(count = n(), mean_dis =mean(distance, na.rm = TRUE), mean_arr =mean(arr_delay, na.rm = TRUE)) %>% 
+  filter(count >20, dest != "HNL")
+
+```
+
+```{r}
+flights %>%
+  group_by(dest)  %>%
+  summarize(count = n(), mean_dis =mean(distance, na.rm = TRUE), mean_arr_delay =mean(arr_delay, na.rm = TRUE)) %>% 
+  filter(count >20, dest != "HNL") %>% 
+  ggplot(aes(x = mean_dis, y = mean_arr_delay)) + geom_point() + geom_smooth(se = FALSE)
+```
+

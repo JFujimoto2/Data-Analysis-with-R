@@ -1,0 +1,49 @@
+---
+title: "Lab01_review"
+author: "Jumpei Fujimoto"
+date: "10/3/2019"
+output: html_document
+---
+
+```{r}
+3^4
+```
+```{r}
+score = c(23, 27, 23,21,34)
+score
+```
+```{r}
+?names()
+names(scores) <- c("Mon", "Tue", "Wed", "Thur", "Fri")
+scores
+```
+```{r}
+mean(scores)
+```
+```{r}
+max(scores)
+```
+```{r}
+min(scores)
+```
+```{r}
+over.23 <- c(scores > 23)
+over.23
+```
+```{r}
+library(tidyverse)
+?filter
+```
+```{r}
+scores[over.23==FALSE]
+```
+```{r}
+scores[over.23]
+```
+
+
+
+
+
+
+

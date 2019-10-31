@@ -1,0 +1,120 @@
+---
+title: "dsci301_lecture17"
+author: "Dr. Kubrom Teka"
+date: "October 28, 2019"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(ISLR)
+library(MASS)
+```
+
+```{r}
+# Fit a simple linear regression model
+
+mod <- lm(medv ~ lstat, data = Boston)
+
+```
+
+
+#Multiple Linear Regression
+
+```{r}
+mod1 <- lm(medv ~ lstat + age, data = Boston)
+```
+
+```{r}
+#Get summary of mod1
+summary(mod1)
+
+```
+
+```{r}
+#What is ~. doing?
+# ~. means every variable except target variable
+# p-value of two variables are not significant(indus, age) <- outdide of rejection region
+mod2 <- lm(medv ~., data = Boston)
+summary(mod2)
+```
+
+```{r}
+#Based on p-values, let's remove predictors that turned out to be not significant from the model.
+# Every variable are significant
+mod3 <- lm(medv ~.-indus - age, data = Boston)
+summary(mod3)
+```
+
+```{r}
+# We can also use the update function, compare both outputs.
+update(mod2, ~. -indus - age)
+```
+
+
+#Model Diagnostics
+
+```{r}
+#Create a data frame of predictions and residuals.
+#Plot a scatterplot.
+diagnostics <- data.frame(predictions = mod3$fitted.values, residuals = mod3$residuals)
+diagnostics
+diagnostics %>% 
+  ggplot(aes(predictions, residuals)) + geom_point()
+#Or
+ggplot(diagnostics, aes(predictions, residuals)) + geom_point()
+
+```
+
+
+
+
+#YOUR TURN
+
+```{r}
+#Load the movies data set from canvas.
+mov <- read.csv("movies.csv")
+mov
+```
+
+```{r}
+#Fit a linear model: imdb_rating as your target variable and critics_score as predictor.
+mod1 <- lm(imdb_rating ~ critics_score, data = mov)
+mod1
+```
+
+```{r}
+#Add audience_score as additional predictor and fit a lm.
+mod2 <- lm(imdb_rating ~ critics_score + audience_score, data = mov)
+summary(mod2)
+```
+
+
+```{r}
+#Predict the IMDb rating of a model with a critics score of 70 and audience score of 20.
+predict(mod2, data.frame(critics_score = c(70), audience_score = c(20)))
+```
+
+
+```{r}
+#Model diagnostics: Plot a residual plot 
+test <- data.frame(prediction = mod2$fitted.values, residuals = mod2$residuals)
+test %>% 
+  ggplot(aes(prediction, residuals)) + geom_point()
+
+```
+
+
+```{r}
+#Fit linear model imdb_rating using the rest of the predictors.
+lm(imdb_rating~., data = mov)
+```
+
+
+
+
+
+
+
+
+

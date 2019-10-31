@@ -1,0 +1,45 @@
+---
+title: "HW 02"
+author: "Jumpei Fujmoto"
+date: "Sep 16, 2019"
+output: html_notebook
+---
+
+```{r}
+#read csv to a variable tita
+tita <- read.csv("titanic.csv")
+```
+
+
+```{r}
+#get the structure of the data
+str(tita)
+```
+```{r}
+#Give the top few rows of the data
+head(tita)
+```
+```{r}
+#Give the bottom few rows of the data
+tail(tita)
+```
+```{r}
+#Give the summary of the data
+summary(tita)
+```
+```{r}
+#install tidy verse package
+install.packages("tidyverse")
+library(tidyverse)
+```
+
+```{r}
+#Filter records that survived, and name it ???surv???
+surv <- filter(tita, Status == "survived")
+surv
+```
+```{r}
+#Save the surv data from question 5 into your folder. Show your code.
+write.csv(surv, "surv.csv")
+```
+

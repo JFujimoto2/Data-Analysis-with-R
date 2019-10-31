@@ -1,0 +1,138 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+install.packages("gapminder")
+library(ggplot2)
+library(gapminder)
+```
+```{r}
+head(gapminder)
+```
+```{r}
+p <- ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp))
+p
+```
+```{r}
+#scatter plot
+p + geom_point() + geom_smooth()
+```
+```{r}
+#try
+subset(gapmider, gapminder$gdpPercap > 90000)
+```
+```{r}
+install.packages("mpg")
+```
+```{r}
+head(mpg)
+```
+```{r}
+?ggplot
+ggplot(mpg)
+```
+```{r}
+p <- ggplot(data = mpg, mapping = aes(x = hwy, y = cyl))
+p + geom_point()
+```
+```{r}
+q <- ggplot(data = mpg, mapping = aes(x = class, y = drv))
+q + geom_point()
+# it os not useful because the data is categorical
+```
+
+```{r}
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp, color = "blue")) + geom_point()
+
+```
+```{r}
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp)) + geom_point(color = "blue") + geom_smooth(color="red")
+```
+```{r}
+# get color in the continent
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp, color = continent)) + geom_point()
+```
+```{r}
+#what if we want size of the points to chage by continent?
+ggplot(gapminder, aes(x= gdpPercap, y=lifeExp, shape = continent)) + geom_point()
+
+```
+```{r}
+#what if we want the points to be more transparent?
+ggplot(gapminder, aes(x= gdpPercap, y=lifeExp, shape = continent)) + geom_point(alpha=0.1)
+
+```
+```{r}
+?geom_smooth
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp, ))+geom_point(aes(color=continent))+geom_smooth()
+```
+```{r}
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp))+geom_point(color="purple")+geom_smooth()
+
+```
+```{r}
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp))+geom_point()+geom_smooth(color="purple")
+```
+```{r}
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp))+geom_point()+geom_smooth(color="purple", se = FALSE)
+```
+```{r}
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp))+geom_smooth(color="purple") + geom_point()
+
+```
+```{r}
+# Thickness geom_smooth(size=)
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp))+geom_point()+geom_smooth(color="purple", size = 2)
+
+```
+```{r}
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp))+geom_point()+geom_smooth(color="purple", size = 1, se = FALSE, method = "lm")
+```
+```{r}
+# Format the X axis
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp))+geom_point()+geom_smooth(color="purple", size = 1, se = FALSE, method = "lm") + scale_x_continuous(labels = scales::comma)
+```
+```{r}
+#Log transforamation
+log(4)
+log(100)
+```
+```{r}
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp))+geom_point()+geom_smooth(color="purple", size = 1, se = FALSE, method = "lm") + scale_x_log10(labels = scales::dollar)
+```
+```{r}
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp))+geom_point()+geom_smooth(color="purple", size = 1, se = FALSE, method = "lm") + scale_x_log10(labels = scales::dollar) + 
+  labs(x = "Log transformed gdp",
+       y = "Life expectancy in years", 
+       title = "Life Expectancy by GDP",
+       subtitle = "subtitle is here",
+       caption = "Source: Gapminder data")
+```
+```{r}
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp))+geom_point(aes(color = pop), color = "red")+geom_smooth(color="yellow", size = 1, se = FALSE, method = "lm") + scale_x_log10(labels = scales::dollar)
+```
+```{r fig.width =8, fig.height= 8}
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp))+geom_point()+geom_smooth(color="purple", size = 1, se = FALSE, method = "lm") + scale_x_log10(labels = scales::dollar) + 
+  labs(x = "Log transformed gdp",
+       y = "Life expectancy in years", 
+       title = "Life Expectancy by GDP",
+       subtitle = "subtitle is here",
+       caption = "Source: Gapminder data")
+```
+
+```{r}
+# save your image to png
+ggsave(filename = "Life expectancy by GDP.png")
+
+ggplot(data =gapminder, mapping= aes(x = gdpPercap, y = lifeExp))+geom_point()+geom_smooth(color="purple", size = 1, se = FALSE, method = "lm") + scale_x_log10(labels = scales::dollar) + 
+  labs(x = "Log transformed gdp",
+       y = "Life expectancy in years", 
+       title = "Life Expectancy by GDP",
+       subtitle = "subtitle is here",
+       caption = "Source: Gapminder data")
+```
+
+
+

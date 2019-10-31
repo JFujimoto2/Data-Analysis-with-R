@@ -1,0 +1,74 @@
+---
+title: "Lecture12"
+author: "Jumpei Fujimoto"
+date: "10/11/2019"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(socviz)
+```
+```{r}
+#inter quatile range
+#Lowe fence = Q1 - 1.5IQR
+#Upper fence = Q3 +1.5IQR
+```
+
+```{r}
+?organdata
+head(organdata)
+```
+```{r fig.width=7}
+ggplot(organdata, aes(x=country, y= donors))+ geom_boxplot() + coord_flip()
+```
+```{r fig.width= 5}
+# reorder
+?reorder
+ggplot(organdata, aes(x=reorder(country, donors, mean, na = TRUE), y= donors))+ geom_boxplot() + coord_flip() + labs(x="")
+```
+
+```{r}
+names(organdata)
+```
+```{r}
+ggplot(organdata, aes(x=reorder(country, donors, mean, na = TRUE), y= donors))+ geom_boxplot(aes(fill = consent_law)) + coord_flip() + labs(x="")
+
+```
+
+
+```{r}
+# Categorical variable is good for filling
+ggplot(organdata, aes(x=reorder(country, donors, mean, na = TRUE), y= donors))+ geom_boxplot(aes(fill = consent_practice)) + coord_flip() + labs(x="")
+
+```
+```{r}
+#command + shift + M, called pipe operater date %>%
+#%>% 
+```
+```{r}
+sin(log(sqrt(sum(c(1,2,3,4)^2))))
+```
+```{r}
+c(1,2,3,4) ^2 %>%
+  sum %>% sqrt %>% log %>% sin
+```
+```{r}
+df <- mtcars
+```
+```{r}
+set.seed =2
+arrange(sample_n(filter(df, mpg>20), size = 5), desc(mpg))
+
+```
+
+
+```{r}
+set.seed =2
+df %>% filter(mpg>20) %>% sample_n(size=5) %>% arrange(desc(mpg))
+```
+
+```{r}
+
+```
+

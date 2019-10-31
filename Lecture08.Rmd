@@ -1,0 +1,110 @@
+---
+title: "Lecture08"
+author: "Jumpei Fujimoto"
+date: "9/25/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(gapminder)
+```
+```{r}
+head(gapminder)
+```
+```{r}
+ggplot(gapminder, aes(x=year, y=gdpPercap)) + geom_line()
+```
+```{r}
+ggplot(gapminder, aes(x=year, y=gdpPercap)) +
+  geom_line(aes(group = country))
+```
+```{r}
+# facet_wrap
+ggplot(gapminder, aes(x=year, y=gdpPercap)) +
+  geom_line(aes(group = country)) +
+  facet_wrap( ~continent)
+```
+```{r fig.width=5}
+# specify # of row
+ggplot(gapminder, aes(x=year, y=gdpPercap)) +
+  geom_line(aes(group = country)) +
+  facet_wrap( ~continent, nrow=1)
+```
+```{r}
+# Make it gray color
+ggplot(gapminder, aes(x=year, y=gdpPercap)) +
+  geom_line(aes(group = country), color = "light gray") +
+  facet_wrap( ~continent, nrow=1)
+```
+```{r fig.width = 5}
+ggplot(gapminder, aes(x=year, y=gdpPercap)) +
+  geom_line(aes(group = country), color = "light gray") +
+  facet_wrap( ~continent, nrow=1) + scale_y_log10()
+```
+```{r fig.width = 5}
+# Lets foramt the y-axis to show dollars
+ggplot(gapminder, aes(x=year, y=gdpPercap)) +
+  geom_line(aes(group = country), color = "light gray") +
+  facet_wrap( ~continent, nrow=1) + scale_y_log10(labels = scales::dollar)
+```
+```{r fig.width=5}
+ggplot(gapminder, aes(x=year, y=gdpPercap)) +
+  geom_line(aes(group = country), color = "light gray") +
+  facet_wrap( ~continent, nrow=1) + scale_y_log10(labels = scales::dollar) +
+  geom_smooth(se = FALSE, method = "loess")
+```
+```{r}
+ggplot(gapminder, aes(x=year, y=gdpPercap)) +
+  geom_line(aes(group = country), color = "light gray") +
+  facet_wrap( ~continent, nrow=1) + scale_y_log10(labels = scales::dollar) +
+  geom_smooth(se = FALSE, method = "loess") +
+  labs( title = "GDP Per Cap by Year",
+        x = "Year",
+        y = "GDP per Capital"
+    
+  )
+```
+```{r}
+head(mpg)
+```
+```{r}
+ggplot(mpg, aes(x=hwy, y=displ)) + geom_point()
+```
+```{r fig.width=5}
+ggplot(mpg, aes(x=hwy, y=displ)) + geom_point() + facet_wrap(~class, nrow = 2)
+```
+```{r}
+install.packages("socviz")
+library(socviz)
+```
+```{r}
+head(gss_sm, 10)
+```
+```{r}
+#make a smoothed scatterplot of the relationship between the age and the number of childs
+ggplot(gss_sm,  aes(x = age, y= childs)) + geom_point()
+```
+```{r warning=FALSE}
+#facet this relationship by sex and race
+# vertical ~ horizontal
+ggplot(gss_sm,  aes(x = age, y= childs)) + 
+  geom_point(alpha=0.2) + 
+  geom_smooth()+
+  facet_grid(sex ~ race)
+```
+
+
+```{r fig.width=4, warning=FALSE}
+#facet_grid for making two variable sprit
+ggplot(gss_sm,  aes(x = age, y= childs)) + 
+  geom_point(alpha=0.2) + 
+  geom_smooth()+
+  facet_grid(sex ~ race + degree) 
+```
+```{r}
+
+```
+
+
+

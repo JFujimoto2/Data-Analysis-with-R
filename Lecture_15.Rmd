@@ -1,0 +1,55 @@
+---
+title: "Lecture_15"
+author: "Jumpei Fujimoto"
+date: "10/21/2019"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+```
+```{r}
+head(diamonds)
+```
+## Ordinal variable 
+has categorical and ranking
+## Two categorical
+geom_count() and count() %>% geom_tile()
+```{r}
+ggplot(diamonds, aes(carat, price)) + geom_point()
+# As carat close to the best, price goes higher
+```
+
+```{r}
+ggplot(diamonds, aes(cut, price)) + geom_boxplot()
+#As cut goes to Ideal, price gets lower
+```
+```{r}
+?diamonds
+ggplot(diamonds, aes(color, price)) + geom_boxplot()
+#As color goes to the worst, median price is higher
+```
+```{r}
+ggplot(diamonds, aes(clarity, price)) + geom_boxplot()
+#As clarity close to the best, prices are lower
+```
+2.
+```{r}
+ggplot(diamonds, aes(cut, carat)) + geom_boxplot()
+#as cut quality goes higher, carat goes down
+```
+
+```{r}
+ggplot(diamonds, aes(cut, carat)) + geom_count()
+```
+```{r}
+ggplot(diamonds, aes(cut, clarity)) + geom_count()
+
+```
+```{r}
+
+```
+
+
+
+

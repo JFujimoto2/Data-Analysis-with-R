@@ -1,0 +1,44 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+5/0
+```
+```{r}
+#Not an number
+0/0
+```
+```{r}
+Inf/Inf
+```
+```{r}
+#read csv file
+read.csv("titanic.csv")
+```
+```{r}
+gap <- read.csv("gapMinderDataFiveYear.csv")
+summary(gap)
+```
+```{r}
+head(gap)
+```
+```{r}
+str(gap)
+```
+```{r}
+#Filter records to show United States only, and name it US
+US <- subset(gap, gap$country=="United States")
+US
+```
+```{r}
+write.csv(US, "NewUS.csv")
+```
+
+
+
+
+
+
+

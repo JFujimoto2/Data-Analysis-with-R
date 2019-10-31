@@ -1,0 +1,65 @@
+---
+title: "Lecture11"
+author: "Jumpei Fujimoto"
+date: "10/9/2019"
+output: html_document
+---
+
+```{r}
+# Histogram and bar chart difference
+# histogram is for continuous variavle and barchart is for categorical
+library(ggplot2)
+library(socviz)
+```
+```{r}
+head(midwest)
+```
+```{r}
+?midwest
+```
+```{r}
+#bins is each histogram
+ggplot(midwest, aes(x = area)) +
+  geom_histogram(bins=20)
+```
+```{r}
+ggplot(midwest, aes(x = area)) +
+  geom_histogram(bins=20, fill = "blue") 
+```
+```{r}
+ggplot(midwest, aes(x = percollege)) +
+  geom_histogram(bins=20, aes(fill = state))
+```
+```{r}
+mort <- read.csv("mortality_data.csv")
+```
+```{r}
+# exposure is the risky score
+head(mort, 50)
+```
+```{r}
+ggplot(mort, aes(x = attage )) + 
+  geom_histogram()
+```
+```{r}
+ggplot(mort, aes(x = attage )) + 
+  geom_histogram(aes(weight = exposure), bins =20)
+```
+
+```{r}
+ggplot(mort, aes(x = attage )) + 
+  geom_histogram(aes(weight = exposure), bins =20)
+```
+
+```{r}
+#density is fitting line
+ggplot(midwest, aes(x = area, color = state)) + geom_histogram() + geom_density(alpha =.1)
+```
+```{r}
+ggplot(midwest, aes(x = area, color = state)) + geom_density(alpha =.1)
+```
+```{r}
+
+```
+
+

@@ -1,0 +1,250 @@
+---
+title: "Lecture02"
+author: "Jumpei Fujimoto"
+date: "8/28/2019"
+output: html_document
+---
+
+```{r}
+# 'contr + option + i' is r chank
+10 + 6
+```
+
+```{r}
+4^3
+```
+
+```{r}
+9 %% 4
+```
+```{r}
+# 'option + -' is <-
+Revenue <-  1600
+Cost <-  100
+Profit <-  Revenue - Cost
+Profit
+
+```
+```{r}
+# 'control + l' is to clean up
+```
+```{r}
+class(Revenue)
+```
+```{r}
+# Using c() to make vector
+nverc <- c(1, 2, 4,5)
+nverc + c(2,2,2,2)
+```
+```{r}
+cvec <- c('U', 'S', 'A') 
+```
+```{r}
+a <- c(TRUE, 4)
+a
+```
+```{r}
+b <- c("x", 4)
+b
+```
+
+```{r}
+a <- "This is DSCI 301"
+a
+class(a)
+```
+```{r}
+5>6
+```
+```{r}
+11<14
+```
+```{r}
+3 <= 5
+2 >= 34
+```
+```{r}
+v <- c(1, 5, 9)
+
+sum(v)
+prod(v)
+```
+```{r}
+v1 <- c(100, 200, 300)
+v2 <- c('a', 'b', 'c')
+v1[1]
+```
+```{r}
+v1[c(1,3)]
+v2[c(1,3)]
+v2[c(1:3)]
+```
+```{r}
+v2[-(1:2)]
+v2[-1]
+```
+```{r}
+v <- c(1, 2, 3, 4)
+names(v) <- c('a', 'b', 'c', 'd')
+v
+```
+```{r}
+v['d']
+v[c('a','d')]
+```
+```{r}
+v[v >2]
+v>2
+```
+```{r}
+v <- 1:10
+v
+```
+```{r}
+matrix(v)
+matrix(v, nrow =2)
+#? is to open description
+# tap 'tab' to specify what is inside
+```
+```{r}
+matrix(v, nrow =3, byrow = TRUE)
+```
+```{r}
+matrix(ncol = 4, data = v, byrow = TRUE)
+```
+```{r}
+v <- 1:15
+v
+```
+```{r}
+mat <- matrix(v, nrow = 3, byrow = TRUE)
+mat
+```
+```{r}
+2*mat
+```
+```{r}
+1/mat
+```
+```{r}
+mat2 <- matrix(v,nrow = 3, ncol = 5 )
+```
+
+```{r}
+# matrix multiplication
+mat %% mat
+```
+```{r}
+mat >12
+```
+```{r}
+names(mat) <- c("Mon", "Tue", "Wed", "Tur", "Fri")
+mat
+```
+
+```{r}
+google <- c(450, 300, 250, 500, 468)
+msft <- c(230, 200, 250, 260, 270)
+```
+```{r}
+stocks <- c(google, msft)
+```
+```{r}
+
+```
+
+```{r}
+stock.matrix <- matrix(stocks, nrow = 2, byrow = TRUE)
+stock.matrix
+```
+```{r}
+days <- c("Mon", "Tue", "Wed", "Tur", "Fri")
+days
+```
+```{r}
+column <- c("Google", "Microsoft")
+column
+```
+
+
+
+
+
+
+
+
+```{r}
+colnames(stock.matrix) <- days
+rownames(stock.matrix) <- column
+stock.matrix
+```
+```{r}
+colSums(stock.matrix)
+```
+```{r}
+rowSums(stock.matrix)
+```
+
+```{r}
+FB <- c(111, 112, 113,120, 145)
+```
+
+```{r}
+tech.stocks <- rbind (stock.matrix, FB)
+tech.stocks
+```
+
+```{r}
+avg <- rowMeans(tech.stocks)
+```
+```{r}
+cbind(tech.stocks, avg)
+```
+```{r}
+mat <- matrix(1:50, byrow = TRUE, nrow = 5)
+mat
+```
+```{r}
+#Grab first row
+mat[1,]
+```
+```{r}
+#Grab first colum
+mat[,1]
+```
+```{r}
+#Grab first 3 rows
+mat[1:3,]
+```
+```{r}
+#Grab top left rectangle of:
+mat[1, 1:3]
+mat[2, 1:3]
+mat[1:2, 1:3]
+mat[]
+```
+```{r}
+#Grab last two column
+mat[, -(1:8)]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

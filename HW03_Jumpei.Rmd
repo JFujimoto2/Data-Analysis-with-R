@@ -1,0 +1,61 @@
+---
+title: "HW03"
+author: "Jumpei Fujimoto"
+date: "9/24/2019"
+output: html_document
+---
+
+```{r}
+#Load mortality data from Canvas, and show top 10 rows of this dataset.
+mortal <- read.csv("mortality_data.csv")
+mortal
+```
+
+
+```{r}
+library(ggplot2)
+```
+
+```{r}
+#Create a scatterplot that shows the mortality rate (actual mortality rate)  by attained age.
+ggplot(data = mortal, mapping = aes(x=attage, y = actual_mort)) + geom_point()
+```
+```{r}
+#Set the color of the points to a light gray so we can tell when points are overlapping.
+ggplot(data = mortal, mapping = aes(x=attage, y = actual_mort)) + geom_point(color= "light gray")
+```
+
+```{r}
+#Now create a graph without the data points, but rather with a smooth line with a ribbon that shows the standard error.
+ggplot(data = mortal, mapping = aes(x=attage, y = actual_mort)) + geom_smooth()
+```
+**Does the standard error on this appear reasonable? Why not? Hint: Mortality rate can not be negative** 
+No Because actual mortality rate goes negative which is impossible
+```{r}
+#Edit the graph so that the standard error ribbon is removed.
+ggplot(data = mortal, mapping = aes(x=attage, y = actual_mort)) + geom_smooth(se = FALSE)
+```
+```{r}
+#Now, add the scatterplot points back to the graph with the line.
+ggplot(data = mortal, mapping = aes(x=attage, y = actual_mort)) +geom_point()+ geom_smooth(se = FALSE) 
+```
+```{r}
+# Add labels such as title, subtitle, caption etc
+ggplot(data = mortal, mapping = aes(x=attage, y = actual_mort)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  labs(title = "Actual Mortality rate by attained age",
+       x = "Attained Age",
+       y = "Actual Mortarity rate",
+       subtitle = "with Average line",
+       caption = "Source: mortality_data")
+```
+```{r}
+ggsave(filename = "mort.jpg")
+```
+
+
+
+
+
+

@@ -1,0 +1,125 @@
+---
+title: "Lecture10"
+author: "Jumpei Fujimoto"
+date: "10/2/2019"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+library(socviz)
+```
+
+```{r}
+head(gss_sm)
+```
+
+```{r}
+ggplot(gss_sm, aes(x =bigregion)) + geom_bar(aes(y = ..prop.., group=1))
+```
+
+```{r}
+ggplot(gss_sm, aes(x =region)) +
+  geom_bar(aes(y = ..prop.., group=1))+
+  coord_flip()
+
+```
+
+```{r}
+table(gss_sm$religion)
+```
+```{r}
+ggplot(gss_sm, aes(x =religion)) +
+  geom_bar()
+```
+```{r}
+# color blue for graph
+ggplot(gss_sm, aes(x =religion)) +
+  geom_bar(fill = "blue")
+```
+```{r}
+ggplot(gss_sm, aes(x =religion)) +
+  geom_bar(aes(fill = religion))
+```
+```{r}
+ggplot(gss_sm, aes(x =religion, fill = religion)) +
+  geom_bar()
+```
+```{r}
+ggplot(gss_sm, aes(x =religion)) +
+  geom_bar(aes(fill = religion)) + guides(fill = FALSE)
+```
+```{r}
+ggplot(gss_sm, aes(x =religion)) +
+  geom_bar(aes(fill = religion)) + labs(fill="religion")
+```
+```{r}
+ggplot(gss_sm, aes(x =religion, fill = factor(..x..))) +
+  geom_bar(aes(y=..prop.., group=1)) + labs(fill="religion") + guides(FALSE)
+```
+```{r}
+ggplot(gss_sm, aes(x =bigregion, fill = religion)) +
+  geom_bar()
+```
+```{r}
+ggplot(gss_sm, aes(x =bigregion, fill = religion)) +
+  geom_bar(aes(y = ..prop.., group=religion)) 
+```
+
+```{r}
+# dodge makes side by side
+ggplot(gss_sm, aes(x =bigregion, fill = religion)) +
+  geom_bar(position = "dodge") 
+```
+```{r}
+# We have to guess what the NA column is
+ggplot(gss_sm, aes(x =bigregion, fill = religion)) +
+  geom_bar(aes(y = ..prop.., group = religion), position = "dodge") 
+```
+```{r}
+ggplot(gss_sm, aes(x =religion, fill = bigregion)) +
+  geom_bar(aes(y = ..prop.., group = bigregion), position = "dodge") +
+  facet_wrap(~bigregion)
+```
+
+Here are the questions we planned to practice in class today
+
+
+1. Plot a bar chart by cut for the data set diamonds.
+
+
+2. Plot a bar chart (proprtions) by cut for the data set diamonds, and give them a gray color.
+
+
+3. Plot a stacked bar chart for cut by clarity.
+
+
+4. For each cut, set the bars of the variable clarity side-by-side.
+
+
+5. Repeat #4 above but change y- axis to show proportions.
+
+
+6. Facet wrap by clarity
+```{r}
+?diamonds
+head(diamonds)
+```
+```{r}
+ggplot(diamonds, aes(x = cut)) + geom_bar()
+```
+```{r}
+ggplot(diamonds, aes(x = cut)) + geom_bar(aes(y = ..prop.., group=1), fill="gray")
+```
+```{r}
+ggplot(diamonds, aes(x = cut)) +
+  geom_bar(aes(y = ..prop.., group=clarity), fill="gray", position = "dodge") 
+```
+```{r}
+ggplot(diamonds, aes(x = cut)) +
+  geom_bar(aes(y = ..prop.., group=clarity), fill="gray", position = "dodge") +
+  facet_wrap(~clarity)
+```
+
+
+

@@ -1,0 +1,27 @@
+---
+title: "Lab2_review"
+author: "Jumpei Fujimoto"
+date: "10/3/2019"
+output: html_document
+---
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+

@@ -1,0 +1,218 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+temps <- c('cold', 'med', 'cold', 'med', 'hot', 'cold')
+
+fact.temp <- factor(temps, ordered =TRUE, levels= c('cold','med', 'hot'))
+fact.temp
+```
+
+```{r}
+data(mtcars)
+```
+```{r}
+mtcars
+head(mtcars,10)
+tail(mtcars, 5)
+```
+```{r}
+#get the structure
+str(mtcars)
+```
+```{r}
+#Get to know whether error is exist
+summary(mtcars)
+```
+```{r}
+days <- c('mon', 'tue','wed', 'tur', 'fri' ) 
+temp <- c(22.1, 21, 24, 25, 20)
+rain <- c(TRUE, FALSE, TRUE, TRUE, FALSE)
+hum <- c(45, 57,48, 50, 60)
+```
+```{r}
+df <- data.frame(days, temp, rain, hum)
+df
+```
+```{r}
+class(df)
+```
+
+```{r}
+str(df)
+```
+```{r}
+summary(df)
+```
+```{r}
+#first column
+df[,1]
+```
+```{r}
+#grab fri data
+df[5, ]
+```
+```{r}
+df["rain"]
+```
+```{r}
+#df$name of column = get the column
+df$rain
+```
+```{r}
+summary(df$rain)
+```
+```{r}
+#grab the days where it rained
+subset(df, rain ==TRUE)
+```
+```{r}
+# row
+nrow(df)
+# column
+ncol(df)
+dim(df)
+# grab row
+dim(df)[1]
+```
+```{r}
+#grab the days where it rained
+subset(df, rain =TRUE)
+```
+```{r}
+subset(df, temp >= 25)
+```
+```{r}
+#decreasing order
+df[order(temp, decreasing = TRUE),]
+```
+```{r}
+#create a new column temp/hum
+df$meaningless <- df$temp / df$hum
+df
+```
+```{r}
+mtcars
+```
+```{r}
+head(mtcars)
+```
+```{r}
+#extract mpg>20 and cyl= 6
+df <- data.frame(mtcars)
+subset(df, mpg>20 | cyl==6)
+```
+```{r}
+mtcars[mtcars$mpg >20 | mtcars$cyl == 6,]
+```
+```{r}
+mtcars[mtcars$mpg >20 | mtcars$cyl == 6, c('mpg', 'cyl', 'disp', 'hp', 'drat')]
+```
+```{r}
+colnames(mtcars)
+```
+```{r}
+iris
+```
+```{r}
+subset(iris, iris$Sepal.Width > 1)
+```
+```{r}
+iris[iris$Species =='setosa' & iris$Petal.Width < 1.6, ]
+```
+```{r}
+colnames(iris)
+```
+
+```{r}
+iris[iris$Species =='setosa' | iris$Petal.Width < 1.6, c("Species","Petal.Length", "Sepal.Length")]
+```
+```{r}
+matrix()
+data.frame()
+```
+```{r}
+?data.frame()
+```
+```{r}
+?matrix()
+```
+```{r}
+data <- c("1", "2", "3", "4", "5", "6", "7", "8", "9")
+mat <- matrix(data, nrow = 3, ncol = 3)
+data.frame(mat)
+```
+```{r}
+is.data.frame(mtcars)
+```
+```{r}
+mat <- matrix(1:25,nrow = 5)
+as.data.frame(mat)
+mat
+```
+```{r}
+df <- mtcars
+```
+```{r}
+head(df,6)
+```
+```{r}
+a <- df["mpg"]
+a
+```
+
+```{r}
+mean(df[,1])
+```
+```{r}
+df[, "cyl" == 6]
+```
+```{r}
+?subset()
+```
+
+```{r}
+subset(mtcars, select = am:carb)
+```
+```{r}
+df$performance <- df$hp / df$wt
+df
+```
+```{r}
+mean(df[df$hp & df$wt >2.5, 1])
+```
+```{r}
+df["Hornet Sportabout", 1]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

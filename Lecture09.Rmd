@@ -1,0 +1,63 @@
+---
+title: "Lecture09"
+author: "Jumpei Fujimoto"
+date: "9/30/2019"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+library(socviz)
+```
+```{r}
+mort <- read.csv("mortality_data.csv")
+head(mort)
+```
+```{r}
+# Zoom in to the relationphip between age and actual mortage
+ggplot(mort, aes(x = attage, y= actual_mort))+ 
+  geom_smooth(aes(color =smoker), se= FALSE)+
+  coord_cartesian(ylim = c(0.0, 0.1))
+```
+```{r}
+# morteality data is 0 or 1 so we should not use logarithm
+# usually put 1 log(x+1) instead of log(x)
+```
+
+```{r}
+head(gss_sm)
+```
+```{r}
+#plot a bar chart for bigression and counting
+#both are the same
+ggplot(gss_sm, aes(bigregion)) +geom_bar()
+
+ggplot(gss_sm, aes(bigregion)) +stat_count()
+```
+```{r}
+#Color to graph use with fill which should be inside of aes
+ggplot(gss_sm, aes(bigregion, fill = region)) +geom_bar()
+```
+```{r}
+#Proportion ..prop..
+ggplot(gss_sm, aes(x= bigregion)) +
+  geom_bar(aes( y= ..prop.., group=1))
+```
+```{r}
+#
+ggplot(gss_sm, aes(bigregion, fill = region)) +geom_bar() + guide(fill = FALSE)
+```
+```{r}
+head(diamonds)
+```
+```{r}
+ggplot(diamonds, aes(x =cut)) + geom_bar()
+```
+```{r}
+ggplot(diamonds, aes(x =cut)) + geom_bar(aes( y= ..prop.., group=1))
+
+```
+
+
+
+

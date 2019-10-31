@@ -1,0 +1,71 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+## Book Ch5
+# R packages/ Libraries
+#
+#
+```
+
+```{r}
+install.packages("tidyverse")
+library(tidyverse)
+```
+```{r}
+install.packages("nycflights13")
+library(nycflights13)
+```
+```{r}
+head(flights)
+```
+```{r}
+#select all flight on Nov 3rd that were from AA with
+?filter
+filter(flights, month == 11 ,day == 3 ,carrier == "AA" )
+```
+
+
+```{r}
+?arrange
+arrange(flights,desc(dep_delay))
+```
+```{r}
+distinct(flights, carrier)
+```
+```{r}
+# mutate to make a new column
+mutate(flights, new_col = arr_delay - dep_delay)
+```
+```{r}
+# use transmute() if you want to pull
+transmute(flights, new_col = arr_delay - dep_delay)
+```
+```{r}
+#summarise
+?summarise
+summarise(flights, mean(air_time, na.rm =TRUE))
+# remove na value from air_time
+sum(is.na(flights$air_time))
+```
+```{r}
+# sample 20 random rows
+sample_n(flights, 20)
+```
+```{r}
+# 5% of the data
+sample_frac(flights, 0.05)
+
+```
+```{r}
+
+```
+```{r}
+
+```
+
+
+
+
